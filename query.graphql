@@ -1,0 +1,26 @@
+fragment AbstractVMFragment on GAbstractVM {
+  memoryStaticMin,
+  memoryStaticMax,
+  memoryDynamicMin,
+  memoryDynamicMax,
+  VCPUsAtStartup,
+  VCPUsMax
+}
+
+fragment ACLXenObjectFragment on GAclXenObject {
+  ref,
+  nameLabel,
+  nameDescription
+}
+
+
+fragment VMInfoFragment on GVM {
+  ...ACLXenObjectFragment
+  ...AbstractVMFragment
+}
+
+query VMInfo ($ref: ID!) {
+  vm (ref: $ref) {
+    ...VMInfoFragment
+  }
+}

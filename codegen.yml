@@ -1,0 +1,9 @@
+overwrite: true
+silent: false
+schema: ["schema.graphql"]
+documents: "./query.graphql"
+generates:
+  ./generated-models.ts:
+    plugins:
+      - "typescript-common"
+      - "typescript-client"

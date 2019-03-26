@@ -1,0 +1,46 @@
+schema {
+  query: Query
+}
+
+interface GAbstractVM {
+  VCPUsAtStartup: Int!
+  VCPUsMax: Int!
+  guestMetrics: ID!
+  memoryActual: Float!
+  memoryDynamicMax: Float!
+  memoryDynamicMin: Float!
+  memoryStaticMax: Float!
+  memoryStaticMin: Float!
+}
+
+interface GAclXenObject {
+  "a human-readable description"
+  nameDescription: String!
+  "a human-readable name"
+  nameLabel: String!
+  "Unique constant identifier/object reference (primary)"
+  ref: ID!
+  "Unique constant identifier/object reference (used in XenCenter)"
+  uuid: ID!
+}
+
+type GVM implements GAbstractVM & GAclXenObject {
+  VCPUsAtStartup: Int!
+  VCPUsMax: Int!
+  guestMetrics: ID!
+  isOwner: Boolean!
+  memoryActual: Float!
+  memoryDynamicMax: Float!
+  memoryDynamicMin: Float!
+  memoryStaticMax: Float!
+  memoryStaticMin: Float!
+  metrics: ID!
+  nameDescription: String!
+  "a human-readable name"
+  nameLabel: String!
+  ref: ID!
+  uuid: ID!
+}
+type Query {
+  vm(ref: ID!): GVM
+}
